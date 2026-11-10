@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Security-Policy" content="img-src 'self' data: blob: https://*.fbcontent.cn https://*.aliyuncs.com https://storage.googleapis.com; media-src 'self' data: blob: https://*.fbcontent.cn https://*.aliyuncs.com https://storage.googleapis.com;">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>100中两个0的运动</title>
+<style>
+  :root{--ink:#111827;--blue:#129fd4;--red:#ef1717;--orange:#d96a20;--paper:#fffdf8;--line:#d9edf5;}
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#fffdf8 0%,#f5fbfd 100%);color:var(--ink);font-family:Arial,"Microsoft YaHei",sans-serif;min-height:100vh}
+  .page{height:100vh;height:100dvh;min-height:0;padding:8px 12px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+  header{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap;width:100%;margin:0}
+  .panel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  button{border:0;border-radius:12px;padding:10px 18px;font-size:16px;font-weight:700;cursor:pointer;min-height:44px;transition:.18s transform,.18s background}
+  button:active{transform:translateY(1px)}
+  .reset{background:#eef2f4;color:#435466}.reset:hover{background:#dde5e9}
+  .undo{background:#eaf4ec;color:#26723c}.undo:hover:not(:disabled){background:#d9eadc}.undo:disabled{opacity:.45;cursor:not-allowed}
+  .stage{flex:1;min-height:0;max-width:none;width:100%;margin:0;background:rgba(255,255,255,.9);border:1px solid #cce6ef;border-radius:18px;box-shadow:0 8px 20px rgba(21,100,125,.08);padding:8px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  svg{display:block;width:100%;height:auto;max-height:calc(100dvh - 92px);min-height:0;touch-action:pan-y}
+  .draggable-dot{cursor:grab;touch-action:none}.draggable-dot:active{cursor:grabbing}
+  .legend{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:5px 6px 0;color:#536475;font-size:13px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block}.orange{background:var(--orange)}.blueLine{width:20px;height:3px;background:var(--blue);display:inline-block}.routeGreen{width:22px;height:0;border-top:3px solid #20a84b;display:inline-block}.routeYellow{width:22px;height:0;border-top:3px solid #f2c400;display:inline-block}
+  .info{display:none}
+  @media(max-width:760px){.page{padding:6px;gap:5px}.stage{padding:4px;border-radius:12px}button{padding:8px 14px}.legend{font-size:11px;gap:8px}}
+  @media(max-height:620px){.page{padding:4px 8px;gap:4px}button{min-height:38px;padding:6px 14px}.stage{padding:4px}.legend{font-size:11px;padding-top:3px}svg{max-height:calc(100dvh - 70px)}}
+</style>
+<script type="application/json" id="fx-resource-config" data-fx-resource-runtime="2">{"chatId":"0037F0D350FB632AB2378FF7813E12FA","env":"online","onlineUrl":"https://musk-online.fbcontent.cn/pub-musk-ai-studio/workflow/file/document/ZFK3zHNkBNhB2XTnEAHkqQ.html","resourceId":"9F430C38E0B80364D417266FF30FE365"}</script><script async src="https://www.feixianglaoshi.com/resource-runtime/v2.js" data-fx-resource-runtime="2"></script></head>
+<body>
+<div class="page">
+  <header>
+    <div class="panel" aria-label="动画控制">
+      <button class="undo" id="undoBtn" disabled>撤回</button>
+      <button class="reset" id="resetBtn">重置</button>
+    </div>
+  </header>
+  <main class="stage">
+      <svg id="art" viewBox="0 0 1100 690" role="img" aria-label="拖动点阵中的任意圆点，可使两个0中的点顺时针同步移动">
+      <defs>
+        <marker id="arrowOrange" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#d96a20" /></marker>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#e46e28" flood-opacity=".2" /></filter>
+      </defs>
+      <rect x="0" y="0" width="1100" height="690" rx="18" fill="#fffdf8" />
+      <g id="grid" stroke="#129fd4" stroke-width="2" opacity=".94">
+        <path d="M90 70 H1025 M90 154.17 H1025 M90 238.33 H1025 M90 322.5 H1025 M90 406.67 H1025 M90 490.83 H1025 M90 575 H1025" />
+        <path d="M90 70 V575 M183.5 70 V575 M277 70 V575 M370.5 70 V575 M464 70 V575 M557.5 70 V575 M651 70 V575 M744.5 70 V575 M838 70 V575 M931.5 70 V575 M1025 70 V575" />
+      </g>
+      <g fill="#101010" font-family="Georgia,serif" font-size="40" text-anchor="middle">
+        <text x="90" y="625">0</text><text x="183.5" y="625">1</text><text x="277" y="625">2</text><text x="370.5" y="625">3</text><text x="464" y="625">4</text><text x="557.5" y="625">5</text><text x="651" y="625">6</text><text x="744.5" y="625">7</text><text x="838" y="625">8</text><text x="931.5" y="625">9</text><text x="1025" y="625">10</text>
+      </g>
+      <g fill="#101010" font-family="Georgia,serif" font-size="40" text-anchor="middle">
+        <text x="55" y="588">0</text><text x="55" y="503">1</text><text x="55" y="419">2</text><text x="55" y="335">3</text><text x="55" y="251">4</text><text x="55" y="167">5</text><text x="55" y="83">6</text>
+      </g>
+      <g id="staticOne" fill="#ef1717" filter="url(#soft)"></g>
+      <g id="tracks" fill="none" stroke="#d96a20" stroke-width="2.5" stroke-dasharray="7 8" opacity=".62"></g>
+      <g id="routeHistory" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".82">
+        <polyline id="greenRoute" stroke="#20a84b" stroke-width="5" />
+        <polyline id="yellowRoute" stroke="#f2c400" stroke-width="5" />
+      </g>
+      <g id="movingLeft" fill="#ef1717" filter="url(#soft)"></g>
+      <g id="movingRight" fill="#ef1717" filter="url(#soft)"></g>
+      <g id="vectors" stroke="#d96a20" stroke-width="2.2" marker-end="url(#arrowOrange)" opacity=".9"></g>
+      <g id="coordLabels" font-family="Arial,'Microsoft YaHei',sans-serif"></g>
+      <g id="nameLabels" font-family="Arial,'Microsoft YaHei',sans-serif"></g>
+    </svg>
+
+  </main>
+  <section class="info">
+    <div class="card"><h2>当前运动状态</h2><div class="status" id="status">已就绪：拖动任意红点开始顺时针运动</div></div>
+    <div class="card"><h2>观察提示</h2><div class="hint" id="hint">按住“0”中的任意圆点，沿点阵边缘顺时针拖动；两个“0”将同步移动。小贝和菲菲会分别跟随绿色点、黄色点。</div></div>
+  </section>
+</div>
+<script>
+(() => {
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('art');
+  const one=document.getElementById('staticOne');
+  const left=document.getElementById('movingLeft');
+  const right=document.getElementById('movingRight');
+  const vectors=document.getElementById('vectors');
+  const status=document.getElementById('status');
+  const hint=document.getElementById('hint');
+  const coordLabels=document.getElementById('coordLabels');
+  const nameLabels=document.getElementById('nameLabels');
+  const sx=x=>90+x*93.5, sy=y=>575-y*(505/6);
+  const r=10;
+  const onePts=[[1,1],[1,2],[1,3],[1,4],[1,5]];
+  const zeroPts=[[3,1],[3,2],[3,3],[3,4],[3,5],[4,1],[5,1],[5,2],[5,3],[5,4],[5,5]];
+  const zero2Pts=[[7,1],[7,2],[7,3],[7,4],[7,5],[8,1],[8,5],[9,1],[9,2],[9,3],[9,4],[9,5]];
+  function dot(group,x,y,fill='#ef1717',radius=r){
+    const e=document.createElementNS(NS,'circle');e.setAttribute('cx',sx(x));e.setAttribute('cy',sy(y));e.setAttribute('r',radius);e.setAttribute('fill',fill);
+    if(group===left||group===right){e.classList.add('draggable-dot');e.setAttribute('stroke','transparent');e.setAttribute('stroke-width','22');e.setAttribute('data-group',group===left?'0':'1');}
+    group.appendChild(e);return e;
+  }
+  onePts.forEach(p=>dot(one,p[0],p[1]));
+  zeroPts.forEach(p=>dot(left,p[0],p[1]));
+  zero2Pts.forEach(p=>{
+    if(p[0]===7&&p[1]===5) dot(right,p[0],p[1],'#20a84b',13);
+    else if(p[0]===9&&p[1]===5) dot(right,p[0],p[1],'#f2c400',13);
+    else dot(right,p[0],p[1]);
+  });
+  const clockwisePath=(pts)=>{
+    const minX=Math.min(...pts.map(p=>p[0])),maxX=Math.max(...pts.map(p=>p[0]));
+    const minY=Math.min(...pts.map(p=>p[1])),maxY=Math.max(...pts.map(p=>p[1]));
+    const top=pts.filter(p=>p[1]===maxY).sort((a,b)=>a[0]-b[0]);
+    const rightSide=pts.filter(p=>p[0]===maxX&&p[1]!==maxY).sort((a,b)=>b[1]-a[1]);
+    const bottom=pts.filter(p=>p[1]===minY&&p[0]!==maxX).sort((a,b)=>b[0]-a[0]);
+    const leftSide=pts.filter(p=>p[0]===minX&&p[1]!==minY&&p[1]!==maxY).sort((a,b)=>a[1]-b[1]);
+    const seen=new Set();
+    return [...top,...rightSide,...bottom,...leftSide].filter(p=>{const key=`${p[0]},${p[1]}`;if(seen.has(key))return false;seen.add(key);return true;});
+  };
+  const orderedPaths=[clockwisePath(zeroPts),clockwisePath(zero2Pts)];
+  const paths=orderedPaths.map(path=>path.map(([x,y])=>({x:sx(x),y:sy(y)})));
+  const pointIndexMaps=[zeroPts,zero2Pts].map((pts,i)=>pts.map(([x,y])=>orderedPaths[i].findIndex(([a,b])=>a===x&&b===y)));
+  const nodeGroups=[...left.querySelectorAll('circle')].length?[ [...left.querySelectorAll('circle')], [...right.querySelectorAll('circle')] ]:[];
+  const greenPointIndex=zero2Pts.findIndex(([x,y])=>x===7&&y===5);
+  const yellowPointIndex=zero2Pts.findIndex(([x,y])=>x===9&&y===5);
+  const greenPathIndex=pointIndexMaps[1][greenPointIndex];
+  const yellowPathIndex=pointIndexMaps[1][yellowPointIndex];
+  const greenTargetPathIndex=orderedPaths[1].findIndex(([x,y])=>x===8&&y===5);
+  const greenNearYellowPathIndex=orderedPaths[1].findIndex(([x,y])=>x===9&&y===5);
+  const yellowTargetPathIndex=orderedPaths[1].findIndex(([x,y])=>x===9&&y===4);
+  const yellowTarget3PathIndex=orderedPaths[1].findIndex(([x,y])=>x===9&&y===3);
+  const greenTargetOffset=(greenTargetPathIndex-greenPathIndex+orderedPaths[1].length)%orderedPaths[1].length;
+  const greenNearYellowOffset=(greenNearYellowPathIndex-greenPathIndex+orderedPaths[1].length)%orderedPaths[1].length-0.25;
+  const yellowTargetOffset=(yellowTargetPathIndex-yellowPathIndex+orderedPaths[1].length)%orderedPaths[1].length;
+  const yellowTarget3Offset=(yellowTarget3PathIndex-yellowPathIndex+orderedPaths[1].length)%orderedPaths[1].length;
+  function crossesTarget(previousTurns,nextTurns,targetOffset){
+    const n=orderedPaths[1].length;
+    const previous=previousTurns*n,next=nextTurns*n;
+    return next>=targetOffset&&previous<targetOffset;
+  }
+  function makeTag(parent,text,color,width){
+    const g=document.createElementNS(NS,'g'),rect=document.createElementNS(NS,'rect'),label=document.createElementNS(NS,'text');
+    rect.setAttribute('rx','8');rect.setAttribute('fill','#fffdf8');rect.setAttribute('stroke',color);rect.setAttribute('stroke-width','2');
+    label.setAttribute('fill',color);label.setAttribute('font-size','22');label.setAttribute('font-weight','700');label.setAttribute('text-anchor','middle');label.setAttribute('dominant-baseline','middle');label.textContent=text;
+    g.append(rect,label);parent.appendChild(g);return {g,rect,text:label,width};
+  }
+  const greenCoord=makeTag(coordLabels,'(7,5)','#20a84b',104);
+  const yellowCoord=makeTag(coordLabels,'(9,5)','#20a84b',104);
+  const greenExtra=makeTag(coordLabels,'(8,5)','#20a84b',104);
+  const yellowExtra=makeTag(coordLabels,'(9,4)','#c49e00',104);
+  const yellowExtra3=makeTag(coordLabels,'(9,3)','#c49e00',104);
+  const xiaobei=makeTag(nameLabels,'小贝','#168743',88);
+  const feifei=makeTag(nameLabels,'菲菲','#aa8700',88);
+  let greenTargetReached=false,greenNearYellowReached=false,yellowTargetReached=false,yellowTarget3Reached=false,swapAnchors=null;
+  greenExtra.g.setAttribute('visibility','hidden');
+  yellowCoord.g.setAttribute('visibility','hidden');
+  yellowExtra.g.setAttribute('visibility','hidden');
+  yellowExtra3.g.setAttribute('visibility','hidden');
+  function placeTag(tag,x,y,text,width=tag.width,height=34){
+    tag.rect.setAttribute('x',x-width/2);tag.rect.setAttribute('y',y-height/2);tag.rect.setAttribute('width',width);tag.rect.setAttribute('height',height);
+    tag.text.setAttribute('x',x);tag.text.setAttribute('y',y);if(text!==undefined)tag.text.textContent=text;
+  }
+  function pointAt(path,index,amount){
+    const n=path.length,whole=Math.floor(amount),fraction=amount-whole;
+    const a=path[(index+whole)%n],b=path[(index+whole+1)%n];
+    return {x:a.x+(b.x-a.x)*fraction,y:a.y+(b.y-a.y)*fraction};
+  }
+  function nearestPathPosition(path,p){
+    let best={distance:Infinity,position:0};
+    for(let i=0;i<path.length;i++){
+      const a=path[i],b=path[(i+1)%path.length],dx=b.x-a.x,dy=b.y-a.y;
+      const t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy)));
+      const x=a.x+t*dx,y=a.y+t*dy,d=(p.x-x)**2+(p.y-y)**2;
+      if(d<best.distance)best={distance:d,position:i+t};
+    }
+    return best;
+  }
+  function eventPoint(evt){const p=svg.createSVGPoint();p.x=evt.clientX;p.y=evt.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+  const greenRoute=document.getElementById('greenRoute');
+  const yellowRoute=document.getElementById('yellowRoute');
+  let turns=0,drag=null;
+  const undoHistory=[];
+  const undoBtn=document.getElementById('undoBtn');
+  function updateUndoButton(){undoBtn.disabled=undoHistory.length===0;}
+  function cloneSwapAnchors(value){return value?{pair:{...value.pair},feifei:{...value.feifei}}:null;}
+  function captureState(){return {turns,greenTargetReached,greenNearYellowReached,yellowTargetReached,yellowTarget3Reached,swapAnchors:cloneSwapAnchors(swapAnchors)};}
+  function restoreState(state){turns=state.turns;greenTargetReached=state.greenTargetReached;greenNearYellowReached=state.greenNearYellowReached;yellowTargetReached=state.yellowTargetReached;yellowTarget3Reached=state.yellowTarget3Reached;swapAnchors=cloneSwapAnchors(state.swapAnchors);render();updateUndoButton();}
+  function routePoints(path,startIndex,endTurns){
+    const n=path.length,steps=Math.max(1,Math.ceil(endTurns*n*3));
+    const points=[];
+    for(let i=0;i<=steps;i++){
+      const p=pointAt(path,startIndex,endTurns*n*i/steps);
+      points.push(`${p.x},${p.y}`);
+    }
+    return points.join(' ');
+  }
+  function render(){
+    vectors.replaceChildren();
+    greenRoute.setAttribute('points',routePoints(paths[1],greenPathIndex,turns));
+    yellowRoute.setAttribute('points',routePoints(paths[1],yellowPathIndex,turns));
+    paths.forEach((path,groupIndex)=>{
+      const nodes=nodeGroups[groupIndex],indexMap=pointIndexMaps[groupIndex],amount=turns*path.length;
+      nodes.forEach((node,i)=>{
+        const pos=pointAt(path,indexMap[i],amount),next=pointAt(path,indexMap[i],amount+0.18);
+        node.setAttribute('cx',pos.x);node.setAttribute('cy',pos.y);
+      });
+    });
+    const amount=turns*paths[1].length;
+    const gp=pointAt(paths[1],greenPathIndex,amount),yp=pointAt(paths[1],yellowPathIndex,amount);
+    const gi=(greenPathIndex+Math.floor(amount+0.5))%orderedPaths[1].length;
+    const yi=(yellowPathIndex+Math.floor(amount+0.5))%orderedPaths[1].length;
+    const gc=orderedPaths[1][gi],yc=orderedPaths[1][yi];
+    const greenCenter=gp.x>850?gp.x-38:gp.x+38;
+    const yellowCenter=yp.x>850?yp.x+38:yp.x-38;
+    placeTag(greenCoord,sx(7),sy(5)+42,'(7,5)',80,36);
+    placeTag(yellowCoord,sx(9),sy(5)+42,'(9,5)',80,36);
+    placeTag(greenExtra,sx(8),sy(5)+42,'(8,5)',80,36);
+    placeTag(yellowExtra,sx(9)+53,sy(4)+12,'(9,4)',80,36);
+    placeTag(yellowExtra3,swapAnchors?sx(9)+53:sx(9)+53,swapAnchors?swapAnchors.pair.y:sy(3)+20,'(9,3)',80,36);
+    yellowCoord.g.setAttribute('visibility',greenNearYellowReached?'visible':'hidden');
+    greenExtra.g.setAttribute('visibility',greenTargetReached?'visible':'hidden');
+    yellowExtra.g.setAttribute('visibility',yellowTargetReached?'visible':'hidden');
+    yellowExtra3.g.setAttribute('visibility',(greenNearYellowReached||yellowTarget3Reached)?'visible':'hidden');
+    const nearRightLower=(gp.x>=sx(9)-50&&gp.y>sy(4)-55);
+    const xiaobeiOffset=nearRightLower?-58:0;
+    const xiaobeiY=nearRightLower?gp.y-58:gp.y-38;
+    placeTag(xiaobei,gp.x+xiaobeiOffset,xiaobeiY,'小贝',88,36);
+    if(swapAnchors){
+      placeTag(feifei,swapAnchors.feifei.x,swapAnchors.feifei.y,'菲菲',88,36);
+    }else{
+      placeTag(feifei,sx(9)+53,yp.y,'菲菲',88,36);
+    }
+  }
+  svg.addEventListener('pointerdown',evt=>{
+    const node=evt.target.closest('.draggable-dot');if(!node)return;
+    const groupIndex=Number(node.dataset.group),nodeIndex=nodeGroups[groupIndex].indexOf(node);
+    if(nodeIndex<0)return;
+    const path=paths[groupIndex],pathIndex=pointIndexMaps[groupIndex][nodeIndex];
+    const point=eventPoint(evt),nearest=nearestPathPosition(path,point);
+    drag={pointerId:evt.pointerId,path,groupIndex,lastPosition:nearest.position,baseNodeIndex:pathIndex,before:captureState(),changed:false};
+    svg.setPointerCapture(evt.pointerId);status.textContent='拖动中：两个“0”正在同步顺时针移动';
+    hint.textContent='沿点阵边缘顺时针拖动；小贝跟随绿色点，菲菲跟随黄色点。';
+    evt.preventDefault();
+  });
+  svg.addEventListener('pointermove',evt=>{
+    if(!drag||evt.pointerId!==drag.pointerId)return;
+    const nearest=nearestPathPosition(drag.path,eventPoint(evt));
+    let delta=nearest.position-drag.lastPosition,n=drag.path.length;
+    if(delta>n/2)delta-=n;else if(delta< -n/2)delta+=n;
+    if(delta>0.002){
+      const previousTurns=turns;
+      turns+=delta/n;drag.changed=true;
+      if(crossesTarget(previousTurns,turns,greenTargetOffset))greenTargetReached=true;
+      if(crossesTarget(previousTurns,turns,greenNearYellowOffset))greenNearYellowReached=true;
+      if(crossesTarget(previousTurns,turns,yellowTargetOffset))yellowTargetReached=true;
+      if(crossesTarget(previousTurns,turns,yellowTarget3Offset)){
+        yellowTarget3Reached=true;
+        if(!swapAnchors){
+          const targetPoint=pointAt(paths[1],yellowPathIndex,turns*paths[1].length);
+          swapAnchors={pair:{x:sx(9)+53,y:targetPoint.y-18},feifei:{x:sx(9)+53,y:sy(3)+38}};
+        }
+      }
+      drag.lastPosition=nearest.position;render();status.textContent='正在顺时针同步移动';
+    }
+    evt.preventDefault();
+  });
+  function finishDrag(evt){if(!drag||evt.pointerId!==drag.pointerId)return;if(drag.changed){undoHistory.push(drag.before);updateUndoButton();}suppressPointerClick={pointerId:evt.pointerId,x:evt.clientX,y:evt.clientY,until:performance.now()+800};drag=null;status.textContent=turns>0?'已暂停在当前位置':'已就绪：拖动任意红点开始顺时针运动';}
+  svg.addEventListener('pointerup',finishDrag);svg.addEventListener('pointercancel',finishDrag);
+  undoBtn.onclick=()=>{if(!undoHistory.length)return;const previous=undoHistory.pop();drag=null;restoreState(previous);status.textContent='已撤回上一步移动';hint.textContent='可以继续拖动点阵，或再次撤回最近一次移动。';};
+  function resetToInitial(){turns=0;drag=null;undoHistory.length=0;greenTargetReached=false;greenNearYellowReached=false;yellowTargetReached=false;yellowTarget3Reached=false;swapAnchors=null;render();updateUndoButton();status.textContent='已就绪：拖动任意红点开始顺时针运动';hint.textContent='按住“0”中的任意圆点，沿点阵边缘顺时针拖动；两个“0”将同步移动。小贝和菲菲会分别跟随绿色点、黄色点。'};
+  document.getElementById('resetBtn').onclick=resetToInitial;
+  const pageRoot=document.querySelector('.page');
+  let suppressPointerClick=null;
+  pageRoot.addEventListener('click',evt=>{
+    if(suppressPointerClick){
+      const recent=performance.now()<=suppressPointerClick.until;
+      const samePointer=evt.pointerId&&evt.pointerId===suppressPointerClick.pointerId;
+      const nearRelease=Math.hypot(evt.clientX-suppressPointerClick.x,evt.clientY-suppressPointerClick.y)<=32;
+      suppressPointerClick=null;
+      if(recent&&(samePointer||(!evt.pointerId&&nearRelease)))return;
+    }
+    if(evt.target.closest('button,.draggable-dot'))return;
+    const inArt=!!evt.target.closest('#art');
+    const onStageBlank=evt.target.classList&&evt.target.classList.contains('stage');
+    const onPageBackground=evt.target===pageRoot||evt.target===document.body;
+    if(inArt||onStageBlank||onPageBackground)resetToInitial();
+  });
+  render();updateUndoButton();
+  window.__interactionState={get turns(){return turns},get dragging(){return !!drag},get canUndo(){return undoHistory.length>0},get greenTargetReached(){return greenTargetReached},get greenNearYellowReached(){return greenNearYellowReached},get yellowTargetReached(){return yellowTargetReached},get yellowTarget3Reached(){return yellowTarget3Reached},undo:()=>undoBtn.click(),reset:()=>document.getElementById('resetBtn').click()};
+})();
+</script>
+</body>
+</html>
