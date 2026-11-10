@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Security-Policy" content="img-src 'self' data: blob: https://*.fbcontent.cn https://*.aliyuncs.com https://storage.googleapis.com; media-src 'self' data: blob: https://*.fbcontent.cn https://*.aliyuncs.com https://storage.googleapis.com;">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>100中两个0的运动</title>
+<style>
+  :root{--ink:#111827;--blue:#129fd4;--red:#ef1717;--orange:#d96a20;--paper:#fffdf8;--line:#d9edf5;}
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(180deg,#fffdf8 0%,#f5fbfd 100%);color:var(--ink);font-family:Arial,"Microsoft YaHei",sans-serif;min-height:100vh}
+  .page{height:100vh;height:100dvh;min-height:0;padding:8px clamp(10px,2vw,28px);display:flex;flex-direction:column;gap:8px;overflow:hidden}
+  header{display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap;width:100%;margin:0 auto;flex:0 0 auto}
+  .eyebrow,h1,.subtitle{display:none}
+  .panel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  button{border:0;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:700;cursor:pointer;min-height:44px;transition:.18s transform,.18s background}
+  button:active{transform:translateY(1px)}
+  .primary{background:#e46e28;color:#fff}.primary:hover{background:#c95b1d}
+  .secondary{background:#e7f5fa;color:#146987}.secondary:hover{background:#d2edf5}
+  .reset{background:#eef2f4;color:#435466}.reset:hover{background:#dde5e9}
+  .stage{flex:1 1 auto;min-height:0;max-width:none;width:100%;margin:0 auto;background:rgba(255,255,255,.9);border:1px solid #cce6ef;border-radius:18px;box-shadow:0 8px 20px rgba(21,100,125,.08);padding:clamp(6px,1vw,14px);position:relative;display:flex;flex-direction:column}
+  svg{display:block;width:100%;height:100%;min-height:0;flex:1 1 auto;object-fit:contain}
+  .legend{display:flex;flex:0 0 auto;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;padding:6px 8px 2px;color:#536475;font-size:14px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block}.red{background:var(--red)}.bluePoint{background:#1687d4}.purplePoint{background:#7e45b8}.blueLine{width:20px;height:3px;background:var(--blue);display:inline-block}
+  #art{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+  #art [data-movable]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}
+  #art [data-movable]:active{cursor:grabbing}
+  .info{display:grid;grid-template-columns:1fr;flex:0 0 auto;max-width:1500px;width:100%;margin:0 auto}
+  .info .card:nth-child(2){display:none}
+  .card{border-radius:14px;background:#fff;border:1px solid #d8edf3;padding:8px 14px;min-height:0}.card h2{font-size:13px;margin:0 0 4px;color:#227696}.status{font-size:16px;font-weight:700}.hint{font-size:14px;color:#667789;line-height:1.65}
+  @media(max-width:760px){.page{padding:6px 6px;gap:6px}.stage{padding:4px;border-radius:12px}button{min-height:42px;padding:8px 14px}.legend{font-size:11px;gap:8px;padding:4px 2px 0}}
+</style>
+<script type="application/json" id="fx-resource-config" data-fx-resource-runtime="2">{"chatId":"F495385194F73811304F96E3FC444024","env":"online","onlineUrl":"https://musk-online.fbcontent.cn/pub-musk-ai-studio/workflow/file/document/QHivX4fG8gVAPmeG7s54Z6.html","resourceId":"72E26F09F3F24F7835D4AC5C0674806B"}</script><script async src="https://www.feixianglaoshi.com/resource-runtime/v2.js" data-fx-resource-runtime="2"></script></head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <div class="eyebrow">点阵运动</div>
+      <h1>观察“100”中后两个“0”</h1>
+      <p class="subtitle">拖动紫色点“明明”，蓝色点随之移动并显示对应路线。</p>
+    </div>
+  <div class="panel" aria-label="点阵控制">
+      <button class="reset" id="resetBtn">重置</button>
+    </div>
+  </header>
+  <main class="stage">
+       <svg id="art" viewBox="0 -56 1100 746" role="img" aria-label="坐标网格上的100点阵，可拖动后两个0顺时针或逆时针移动">
+       <defs>
+          <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f78484" /></marker>
+          <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#75b8e8" /></marker>
+           <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#b79ad9" /></marker>
+           <marker id="routeArrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#75b8e8" /></marker>
+           <marker id="routeArrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#b79ad9" /></marker>
+         <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#e46e28" flood-opacity=".2" /></filter>
+       </defs>
+        <rect id="svgBackground" x="0" y="-56" width="1100" height="746" rx="18" fill="#fffdf8" />
+       <g id="grid" stroke="#129fd4" stroke-width="2" opacity=".94">
+         <path d="M90 -31 H1025 M90 70 H1025 M90 171 H1025 M90 272 H1025 M90 373 H1025 M90 474 H1025 M90 575 H1025" />
+         <path d="M90 -31 V575 M183.5 -31 V575 M277 -31 V575 M370.5 -31 V575 M464 -31 V575 M557.5 -31 V575 M651 -31 V575 M744.5 -31 V575 M838 -31 V575 M931.5 -31 V575 M1025 -31 V575" />
+       </g>
+       <g fill="#101010" font-family="Georgia,serif" font-size="40" text-anchor="middle">
+         <text x="90" y="625">0</text><text x="183.5" y="625">1</text><text x="277" y="625">2</text><text x="370.5" y="625">3</text><text x="464" y="625">4</text><text x="557.5" y="625">5</text><text x="651" y="625">6</text><text x="744.5" y="625">7</text><text x="838" y="625">8</text><text x="931.5" y="625">9</text><text x="1025" y="625">10</text>
+       </g>
+       <g fill="#101010" font-family="Georgia,serif" font-size="40" text-anchor="middle">
+         <text x="55" y="588">0</text><text x="55" y="487">1</text><text x="55" y="386">2</text><text x="55" y="285">3</text><text x="55" y="184">4</text><text x="55" y="83">5</text><text x="55" y="-18">6</text>
+       </g>
+        <g id="staticOne" fill="#ef1717" filter="url(#soft)"></g>
+        <g id="routeTracks" fill="none" stroke-width="3" stroke-linecap="round" opacity=".95"></g>
+        <g id="movingLeft" fill="#ef1717" filter="url(#soft)"></g>
+       <g id="movingRight" fill="#ef1717" filter="url(#soft)"></g>
+       <g id="dragArrow" fill="none" stroke-width="3" visibility="hidden"></g>
+       <g id="coordLabel" font-family="Arial,'Microsoft YaHei',sans-serif" visibility="hidden"></g>
+         <g id="personNames" font-family="Arial,'Microsoft YaHei',sans-serif" font-size="28" font-weight="700" text-anchor="middle"></g>
+     </svg>
+     <div class="legend"><span><i class="dot red"></i>可拖动点阵</span><span><i class="dot bluePoint"></i>聪聪</span><span><i class="dot purplePoint"></i>明明</span><span><i class="blueLine"></i>坐标网格</span></div>
+  </main>
+  <section class="info">
+    <div class="card"><h2>当前操作</h2><div class="status" id="status">拖动紫色点“明明”</div></div>
+    <div class="card"><h2>操作提示</h2><div class="hint" id="hint">沿点阵边缘拖动可顺时针或逆时针移动；正在拖动的小圆点到达网格交点时显示数对，离开交点后数对隐藏。</div></div>
+  </section>
+</div>
+<script>
+(() => {
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.getElementById('art');
+  const one=document.getElementById('staticOne');
+  const left=document.getElementById('movingLeft');
+   const right=document.getElementById('movingRight');
+   const routeTracks=document.getElementById('routeTracks');
+   const arrow=document.getElementById('dragArrow');
+  const label=document.getElementById('coordLabel');
+  const names=document.getElementById('personNames');
+  const status=document.getElementById('status');
+  const hint=document.getElementById('hint');
+  const sx=x=>90+x*93.5, sy=y=>575-y*101;
+  const r=10;
+  const onePts=[[1,1],[1,2],[1,3],[1,4],[1,5]];
+  const zeroPts=[[3,1],[3,2],[3,3],[3,4],[3,5],[4,5],[4,1],[5,1],[5,2],[5,3],[5,4],[5,5]];
+  const zero2Pts=[[7,1],[7,2],[7,3],[7,4],[7,5],[8,1],[8,5],[9,1],[9,2],[9,3],[9,4],[9,5]];
+  const centers=[{x:sx(4),y:sy(3),pts:zeroPts,el:left},{x:sx(8),y:sy(3),pts:zero2Pts,el:right}];
+  function dot(group,x,y,fill='#ef1717',radius=r){
+    const e=document.createElementNS(NS,'circle');
+    e.setAttribute('cx',sx(x));e.setAttribute('cy',sy(y));e.setAttribute('r',radius);e.setAttribute('fill',fill);e.setAttribute('data-movable','true');
+    group.appendChild(e);return e;
+  }
+  onePts.forEach(p=>{const e=document.createElementNS(NS,'circle');e.setAttribute('cx',sx(p[0]));e.setAttribute('cy',sy(p[1]));e.setAttribute('r',r);e.setAttribute('fill','#ef1717');one.appendChild(e)});
+  zeroPts.forEach(p=>{
+    if(p[0]===3&&p[1]===5) dot(left,p[0],p[1],'#1687d4',14);
+    else if(p[0]===5&&p[1]===1) dot(left,p[0],p[1],'#7e45b8',14);
+    else dot(left,p[0],p[1]);
+  });
+  zero2Pts.forEach(p=>dot(right,p[0],p[1]));
+  const orderedPaths=[zeroPts,zero2Pts].map(pts=>{
+    const minX=Math.min(...pts.map(p=>p[0])),maxX=Math.max(...pts.map(p=>p[0]));
+    const minY=Math.min(...pts.map(p=>p[1])),maxY=Math.max(...pts.map(p=>p[1]));
+    const top=pts.filter(p=>p[1]===maxY).sort((a,b)=>a[0]-b[0]);
+    const rightSide=pts.filter(p=>p[0]===maxX&&p[1]!==maxY).sort((a,b)=>b[1]-a[1]);
+    const bottom=pts.filter(p=>p[1]===minY&&p[0]!==maxX).sort((a,b)=>b[0]-a[0]);
+    const leftSide=pts.filter(p=>p[0]===minX&&p[1]!==minY&&p[1]!==maxY).sort((a,b)=>a[1]-b[1]);
+    return [...top,...rightSide,...bottom,...leftSide];
+  });
+  const paths=orderedPaths.map(path=>path.map(([x,y])=>({x:sx(x),y:sy(y)})));
+  const pointIndexMaps=[zeroPts,zero2Pts].map((pts,g)=>pts.map(([x,y])=>orderedPaths[g].findIndex(([ox,oy])=>ox===x&&oy===y)));
+  const nodeGroups=[left,right];
+  const nodes=nodeGroups.map(group=>[...group.querySelectorAll('circle[data-movable]')]);
+  const blueIndex=zeroPts.findIndex(([x,y])=>x===3&&y===5);
+  const purpleIndex=zeroPts.findIndex(([x,y])=>x===5&&y===1);
+  function addName(text,color){const t=document.createElementNS(NS,'text');t.textContent=text;t.setAttribute('fill',color);names.appendChild(t);return t}
+  const blueName=addName('聪聪','#1687d4'),purpleName=addName('明明','#7e45b8');
+  let progress=0,routeStartProgress=0,routeTravel=0,routeDirection=0,draggedEl=null,activePid=null,activeGroup=-1,activeIndex=-1,lastPathPhase=0,direction=0,lastPointerPoint=null,dragStartPoint=null,lockedAxis=null;
+  function pointAt(path,index,amount){const n=path.length,whole=Math.floor(amount),fraction=amount-whole,wrap=v=>((v%n)+n)%n,a=path[wrap(index+whole)],b=path[wrap(index+whole+1)];return{x:a.x+(b.x-a.x)*fraction,y:a.y+(b.y-a.y)*fraction}}
+  function svgPoint(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse())}
+  function projectPath(point,path){
+    let best={distance:Infinity,phase:0};
+    for(let i=0;i<path.length;i++){
+      const a=path[i],b=path[(i+1)%path.length],dx=b.x-a.x,dy=b.y-a.y;
+      const denom=dx*dx+dy*dy;const t=Math.max(0,Math.min(1,((point.x-a.x)*dx+(point.y-a.y)*dy)/denom));
+      const x=a.x+t*dx,y=a.y+t*dy,d=Math.hypot(point.x-x,point.y-y);
+      if(d<best.distance)best={distance:d,phase:(i+t)/path.length};
+    }
+    return best.phase;
+  }
+  function coordFor(pos){
+    const x=Math.round((pos.x-90)/93.5),y=Math.round((575-pos.y)/101);
+    if(x<0||x>10||y<0||y>6)return null;
+    return Math.hypot(pos.x-sx(x),pos.y-sy(y))<15?[x,y]:null;
+  }
+  function updateLabel(pos){
+    const coord=coordFor(pos);if(!coord){label.setAttribute('visibility','hidden');return}
+    const color=draggedEl.getAttribute('fill');label.replaceChildren();
+    const rect=document.createElementNS(NS,'rect'),text=document.createElementNS(NS,'text');
+    const value=`(${coord[0]},${coord[1]})`,x=pos.x,y=pos.y+Number(draggedEl.getAttribute('r'))+25;
+    rect.setAttribute('x',x-43);rect.setAttribute('y',y-16);rect.setAttribute('width',86);rect.setAttribute('height',32);rect.setAttribute('rx',7);rect.setAttribute('fill','#fffdf8');rect.setAttribute('stroke',color);rect.setAttribute('stroke-width',2);
+    text.textContent=value;text.setAttribute('x',x);text.setAttribute('y',y);text.setAttribute('fill',color);text.setAttribute('font-size',20);text.setAttribute('font-weight',700);text.setAttribute('text-anchor','middle');text.setAttribute('dominant-baseline','middle');
+    label.append(rect,text);label.setAttribute('visibility','visible');
+  }
+  function arrowMarker(color){return color==='#1687d4'?'url(#arrowBlue)':color==='#7e45b8'?'url(#arrowPurple)':'url(#arrowRed)'}
+  function updateArrow(pos){
+    if(!draggedEl||!lastPointerPoint||Math.hypot(lastPointerPoint.x,lastPointerPoint.y)<.5){arrow.setAttribute('visibility','hidden');return}
+    const ax=Math.abs(lastPointerPoint.x),ay=Math.abs(lastPointerPoint.y);
+    const ux=ax>=ay?(lastPointerPoint.x>=0?1:-1):0;
+    const uy=ay>ax?(lastPointerPoint.y>=0?1:-1):0;
+    const color=draggedEl.getAttribute('fill'),radius=Number(draggedEl.getAttribute('r'))||r;
+    const pale=color==='#1687d4'?'#75b8e8':color==='#7e45b8'?'#b79ad9':'#f78484';
+    arrow.replaceChildren();
+    const line=document.createElementNS(NS,'line');
+    line.setAttribute('x1',pos.x+ux*(radius+2));line.setAttribute('y1',pos.y+uy*(radius+2));
+    line.setAttribute('x2',pos.x+ux*(radius+34));line.setAttribute('y2',pos.y+uy*(radius+34));
+    line.setAttribute('stroke',pale);line.setAttribute('stroke-width',3.5);line.setAttribute('stroke-linecap','round');line.setAttribute('marker-end',arrowMarker(color));
+    arrow.appendChild(line);arrow.setAttribute('visibility','visible');
+  }
+  function drawRouteFor(startPhase,color,markerId,side,distance,sign){
+    if(distance<=0.001||!sign)return;
+    const path=paths[0],n=path.length,cx=(Math.min(...path.map(p=>p.x))+Math.max(...path.map(p=>p.x)))/2,cy=(Math.min(...path.map(p=>p.y))+Math.max(...path.map(p=>p.y)))/2,offset=20;
+    const wrap=v=>((v%n)+n)%n;
+    function edgePoint(a,b,t){return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t}}
+    let cursor=startPhase,remaining=Math.min(distance,n),guard=0;
+    while(remaining>1e-6&&guard++<n+2){
+      let i,t;
+      if(sign>0){i=Math.floor(cursor+1e-8);t=cursor-i;if(t>1-1e-8){i++;t=0}}
+      else{i=Math.ceil(cursor-1e-8)-1;t=cursor-i;if(t<1e-8){i--;t=1}}
+      const a=path[wrap(i)],b=path[wrap(i+1)],dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy);if(!len)break;
+      const nx=-dy/len,ny=dx/len,mx=(a.x+b.x)/2,my=(a.y+b.y)/2,toCenterX=cx-mx,toCenterY=cy-my;
+      const toward=nx*toCenterX+ny*toCenterY>=0?1:-1,outward=-toward,normalSign=side==='inside'?toward:outward,ox=nx*normalSign*offset,oy=ny*normalSign*offset;
+      const amount=Math.min(remaining,sign>0?1-t:t),t2=t+sign*amount;
+      const p1=edgePoint(a,b,t),p2=edgePoint(a,b,t2),line=document.createElementNS(NS,'line');
+      line.setAttribute('x1',p1.x+ox);line.setAttribute('y1',p1.y+oy);line.setAttribute('x2',p2.x+ox);line.setAttribute('y2',p2.y+oy);line.setAttribute('stroke',color);
+      if(Math.hypot(p2.x-p1.x,p2.y-p1.y)>14)line.setAttribute('marker-end',`url(#${markerId})`);
+      routeTracks.appendChild(line);cursor+=sign*amount;remaining-=amount;
+    }
+  }
+  function updateRouteTracks(){
+    routeTracks.replaceChildren();
+    if(!routeDirection||routeTravel<=0.0001)return;
+    const distance=routeTravel*paths[0].length,sign=routeDirection;
+    drawRouteFor(pointIndexMaps[0][purpleIndex]+routeStartProgress*paths[0].length,'#b79ad9','routeArrowPurple','outside',distance,sign);
+    drawRouteFor(pointIndexMaps[0][blueIndex]+routeStartProgress*paths[0].length,'#75b8e8','routeArrowBlue','inside',distance,sign);
+  }
+  function render(){
+    updateRouteTracks();
+    paths.forEach((path,g)=>nodes[g].forEach((node,i)=>{const pi=pointIndexMaps[g][i],pos=pointAt(path,pi,progress*path.length);node.setAttribute('cx',pos.x);node.setAttribute('cy',pos.y)}));
+    const bluePos=pointAt(paths[0],pointIndexMaps[0][blueIndex],progress*paths[0].length);
+    const purplePos=pointAt(paths[0],pointIndexMaps[0][purpleIndex],progress*paths[0].length);
+    blueName.setAttribute('x',bluePos.x);blueName.setAttribute('y',bluePos.y-27);purpleName.setAttribute('x',purplePos.x);purpleName.setAttribute('y',purplePos.y-27);
+    if(draggedEl){const pos={x:Number(draggedEl.getAttribute('cx')),y:Number(draggedEl.getAttribute('cy'))};updateLabel(pos);arrow.setAttribute('visibility','hidden');}
+    else{label.setAttribute('visibility','hidden');arrow.setAttribute('visibility','hidden')}
+  }
+  function forceResetActive(){if(draggedEl){try{if(activePid!==null&&draggedEl.hasPointerCapture(activePid))draggedEl.releasePointerCapture(activePid)}catch(_){ }draggedEl=null;activePid=null;activeGroup=-1;activeIndex=-1;direction=0;lastPointerPoint=null;dragStartPoint=null;lockedAxis=null;label.setAttribute('visibility','hidden');arrow.setAttribute('visibility','hidden')}}
+  function onPointerDown(e){
+    if(draggedEl)forceResetActive();
+    const el=e.target.closest&&e.target.closest('circle[data-movable]');if(!el||el!==nodes[0][purpleIndex])return;
+    activeGroup=0;
+    activeIndex=nodes[activeGroup].indexOf(el);if(activeIndex<0)return;
+    draggedEl=el;activePid=e.pointerId;direction=0;routeStartProgress=progress;routeTravel=0;routeDirection=0;
+    const p=svgPoint(e);dragStartPoint={x:p.x,y:p.y};lockedAxis=null;lastPathPhase=projectPath(p,paths[activeGroup]);lastPointerPoint={x:0,y:0};
+    try{el.setPointerCapture(e.pointerId)}catch(_){ }
+    status.textContent='拖动紫色点“明明”';hint.textContent='沿点阵边缘拖动紫色点“明明”，紫色点与蓝色点的对应路线会随移动同步显示。点到达网格交点时显示数对，离开交点后隐藏。';render();
+    e.preventDefault();
+  }
+  function onPointerMove(e){
+    if(!draggedEl||e.pointerId!==activePid)return;
+    const raw=svgPoint(e);
+    if(!lockedAxis){lockedAxis=Math.abs(raw.x-dragStartPoint.x)>=Math.abs(raw.y-dragStartPoint.y)?'x':'y'}
+    const p=lockedAxis==='x'?{x:raw.x,y:dragStartPoint.y}:{x:dragStartPoint.x,y:raw.y};
+    const nextPhase=projectPath(p,paths[activeGroup]);let delta=nextPhase-lastPathPhase;
+    lastPointerPoint=lockedAxis==='x'?{x:p.x-dragStartPoint.x,y:0}:{x:0,y:p.y-dragStartPoint.y};
+    if(delta>.5)delta-=1;if(delta<-.5)delta+=1;
+    if(Math.abs(delta)>0.00001){
+      const nextDirection=delta>0?1:-1;
+      if(routeDirection&&nextDirection!==routeDirection){routeStartProgress=progress;routeTravel=0}
+      else if(!routeDirection){routeStartProgress=progress;routeTravel=0}
+      routeDirection=nextDirection;routeTravel+=Math.abs(delta);direction=nextDirection;progress+=delta;lastPathPhase=nextPhase;status.textContent=direction>0?'正在顺时针拖动':'正在逆时针拖动'
+    }
+    render();e.preventDefault();
+  }
+  function endDrag(e){if(!draggedEl||e.pointerId!==activePid)return;forceResetActive();status.textContent='拖动已结束';hint.textContent='继续拖动紫色点“明明”；紫色点和蓝色点的对应路线会随移动同步显示。点击“重置”恢复初始位置。';render()}
+  document.addEventListener('pointerdown',onPointerDown);
+  document.addEventListener('pointermove',onPointerMove);
+  document.addEventListener('pointerup',endDrag);
+  document.addEventListener('pointercancel',endDrag);
+  function resetAnimation(){forceResetActive();progress=0;routeStartProgress=0;routeTravel=0;routeDirection=0;status.textContent='已重置：点阵回到初始位置';hint.textContent='拖动紫色点“明明”沿点阵边缘顺时针或逆时针移动；紫色点和蓝色点的对应路线随移动同步显示。到达网格交点时显示数对，离开交点后数对隐藏。';render()}
+  document.getElementById('resetBtn').onclick=resetAnimation;
+  document.addEventListener('click',e=>{
+    if(e.target.closest&&e.target.closest('button,[data-movable],.legend'))return;
+    resetAnimation();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
